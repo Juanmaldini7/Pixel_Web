@@ -2058,7 +2058,7 @@ function start() {
 
 function connect() {
     "use strict";
-    useDeviceInfo();
+    
 
     window.WebSocket = window.WebSocket || window.MozWebSocket;
 
@@ -2068,7 +2068,7 @@ function connect() {
     }
 
     ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://'));
-
+    
     ws.onmessage = function(event) {
         let msg = JSON.parse(event.data);
         if (msg.type === 'config') {
@@ -2179,4 +2179,5 @@ function load() {
     setupFreezeFrameOverlay();
     registerKeyboardEvents();
     start();
+    useDeviceInfo();
 }
