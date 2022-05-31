@@ -2058,7 +2058,6 @@ function start() {
 
 function connect() {
     "use strict";
-    
 
     window.WebSocket = window.WebSocket || window.MozWebSocket;
 
@@ -2071,6 +2070,8 @@ function connect() {
     
     ws.onmessage = function(event) {
         let msg = JSON.parse(event.data);
+        useDeviceInfo();
+
         if (msg.type === 'config') {
             console.log("%c[Inbound SS (config)]", "background: lightblue; color: black", msg);
             onConfig(msg);
@@ -2179,5 +2180,4 @@ function load() {
     setupFreezeFrameOverlay();
     registerKeyboardEvents();
     start();
-    useDeviceInfo();
 }
