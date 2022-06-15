@@ -402,6 +402,19 @@ function setOverlay(htmlClass, htmlElement, onClickFunction) {
     let videoPlayOverlay = document.getElementById('videoPlayOverlay');
     if (!videoPlayOverlay) {
         let playerDiv = document.getElementById('player');
+        /* introVid = document.createElement('video');
+        introVid.id = 'introVid';
+        introVid.className = 'introVidShow';
+        introVid.pleaload = 'auto';
+        introVid.autoplay = true;
+        introVid.loop = true;
+    
+        let videoSource = document.createElement('source');
+        videoSource.src = './Ritz01.mp4';
+        videoSource.type="video/mp4";
+        introVid.appendChild(videoSource);
+
+        playerDiv.appendChild(introVid); */
         videoPlayOverlay = document.createElement('div');
         videoPlayOverlay.id = 'videoPlayOverlay';
         playerDiv.appendChild(videoPlayOverlay);
@@ -429,6 +442,11 @@ function setOverlay(htmlClass, htmlElement, onClickFunction) {
     }
 
     videoPlayOverlay.classList.add(htmlClass);
+}
+
+function hideIntroVid() {
+    let vid = document.getElementById('introVid');
+    vid.className = 'introVidHide'
 }
 
 function showConnectOverlay() {
@@ -461,6 +479,7 @@ function playVideoStream() {
         requestInitialSettings();
         requestQualityControl();
         showFreezeFrameOverlay();
+        
         hideOverlay();
     } else {
         console.error("Could not player video stream because webRtcPlayerObj.video was not valid.")
@@ -517,6 +536,7 @@ function showAfkOverlay() {
 }
 
 function hideOverlay() {
+    /* hideIntroVid(); */
     setOverlay('hiddenState');
 }
 
@@ -2146,8 +2166,7 @@ function useDeviceInfo(){
     const d = document,
     n = navigator,
     ua = n.userAgent;
-    
-    const lucho = 0,
+
     isMobile = {
         android: ()=> ua.match(/android/i),
         ios: () => ua.match(/iphone|ipad|ipod/i),
@@ -2167,10 +2186,10 @@ function useDeviceInfo(){
     isBrowser = {};
 
     if(isMobile.any()) {
-        console.log ("Estamos en mobile Perri");
+        console.log ("MOBILE");
         sendPixelStreamingInput('MOBILE');
     } else {
-        console.log ("Estamos en desktop Perri");
+        console.log ("PC");
         sendPixelStreamingInput('PC');
         }
 }
